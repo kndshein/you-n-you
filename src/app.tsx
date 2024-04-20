@@ -1,33 +1,38 @@
-import { useState } from 'preact/hooks'
-import preactLogo from './assets/preact.svg'
-import viteLogo from '/vite.svg'
-import './app.css'
+import { useState } from 'preact/hooks';
+import './app.css';
+import { Chatbox } from './chatbox';
+import { Message, UserId } from './types';
+
+type PastMessage = {
+  user_id: UserId;
+  message: Message;
+  datetime: number;
+};
+
+export type SendMessage = (user_id: UserId, message: Message) => void;
 
 export function App() {
-  const [count, setCount] = useState(0)
+  const [users] = useState([1, 2]);
+  const [past_messages, setPastMessages] = useState<PastMessage[]>([]);
+
+  const sendMessage: SendMessage = (user_id, message) => {
+    const past_messages_clone = [...past_messages];
+    const new_message: PastMessage = {
+      user_id: user_id,
+      message: message,
+      datetime: Date.now(),
+    };
+    past_messages_clone.push(new_message);
+    setPastMessages(past_messages_clone);
+  };
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} class="logo" alt="Vite logo" />
-        </a>
-        <a href="https://preactjs.com" target="_blank">
-          <img src={preactLogo} class="logo preact" alt="Preact logo" />
-        </a>
-      </div>
-      <h1>Vite + Preact</h1>
-      <div class="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/app.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p class="read-the-docs">
-        Click on the Vite and Preact logos to learn more
-      </p>
+      {users.map((user_id) => {
+        return (
+          <Chatbox key={user_id} user_id={user_id} sendMessage={sendMessage} />
+        );
+      })}
     </>
-  )
+  );
 }
