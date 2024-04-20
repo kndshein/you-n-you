@@ -10,11 +10,21 @@ interface Props {
 
 export function PhoneView({ user_id, past_messages, sendMessage }: Props) {
   return (
-    <div>
-      {past_messages.map((message) => {
-        return <p>{message.text}</p>;
-      })}
+    <section>
+      <div className="past_messages_container">
+        {past_messages.map((message) => {
+          const is_curr_user_message = message.user_id == user_id;
+          return (
+            <p
+              key={message.datetime}
+              className={`${is_curr_user_message ? 'curr_user' : ''} message`}
+            >
+              {message.text}
+            </p>
+          );
+        })}
+      </div>
       <Chatbox user_id={user_id} sendMessage={sendMessage} />
-    </div>
+    </section>
   );
 }

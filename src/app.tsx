@@ -1,5 +1,5 @@
 import { useState } from 'preact/hooks';
-import './app.css';
+import './styles.scss';
 import { Message, UserId } from './types';
 import { PhoneView } from './PhoneView';
 
