@@ -10,7 +10,7 @@ interface Props {
 export function Chatbox({ user_id, sendMessage }: Props) {
   const [curr_text, setCurrText] = useState('');
   return (
-    <>
+    <section className="chatbox">
       <input
         value={curr_text}
         onInput={(event) => {
@@ -25,6 +25,6 @@ export function Chatbox({ user_id, sendMessage }: Props) {
       >
         Send
       </button>
-    </>
+    </section>
   );
 }

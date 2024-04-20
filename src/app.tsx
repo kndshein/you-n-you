@@ -1,5 +1,5 @@
 import { useState } from 'preact/hooks';
-import './styles.scss';
+import './styles/styles.scss';
 import { Message, UserId } from './types';
 import { PhoneView } from './PhoneView';
 
@@ -28,7 +28,7 @@ export function App() {
   };
 
   return (
-    <>
+    <div className="phones_container">
       {users.map((user_id) => {
         return (
           <PhoneView
@@ -39,6 +39,6 @@ export function App() {
           />
         );
       })}
-    </>
+    </div>
   );
 }
