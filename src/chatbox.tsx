@@ -1,6 +1,6 @@
 import { useState } from 'preact/hooks';
 import { UserId } from './types';
-import { SendMessage } from './app';
+import { SendMessage } from './App';
 
 interface Props {
   user_id: UserId;
@@ -8,19 +8,19 @@ interface Props {
 }
 
 export function Chatbox({ user_id, sendMessage }: Props) {
-  const [curr_message, setCurrMessage] = useState('');
+  const [curr_text, setCurrText] = useState('');
   return (
     <>
       <input
-        value={curr_message}
+        value={curr_text}
         onInput={(event) => {
-          setCurrMessage(event.currentTarget.value);
+          setCurrText(event.currentTarget.value);
         }}
       />
       <button
         onClick={() => {
-          sendMessage(user_id, curr_message);
-          setCurrMessage('');
+          sendMessage(user_id, curr_text);
+          setCurrText('');
         }}
       >
         Send
