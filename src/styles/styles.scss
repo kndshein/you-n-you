@@ -5,8 +5,8 @@ $phone--background: black;
 $phone--border-radius: 10px;
 $phone--padding-top: 1rem;
 $phone--padding-right: 0.5rem;
-$phone--padding-bottom: 1rem;
-$phone--padding-left: 1rem;
+$past-messages--padding-left: 1rem;
+$past-messages--background: $phone--background;
 $message--border-radius: 15px;
 $message--background: #8e8e93;
 $message--curr-user--background: rgb(64, 156, 255);
@@ -90,21 +90,23 @@ body {
   border-radius: $phone--border-radius;
   height: 600px;
   width: 300px;
+  padding-top: $phone--padding-top;
   margin: 2rem;
-  padding: $phone--padding-top $phone--padding-right $phone--padding-bottom
-    $phone--padding-left;
 }
 
 .past_messages_wrapper {
+  z-index: 2;
   display: flex;
   flex-flow: column-reverse;
   align-items: flex-start;
   overflow-y: auto;
+  padding-left: $past-messages--padding-left;
   padding-right: $scrollbar--gap; // Space between scrollbar and content is controlled by padding
   max-width: 100%;
   height: 100%;
   scrollbar-width: thin;
   scroll-behavior: smooth;
+  background: $past-messages--background;
 
   .curr_user {
     align-self: end;
@@ -113,15 +115,17 @@ body {
 }
 
 .past_messages_wrapper_clone {
-  z-index: -1;
+  z-index: 1;
   position: absolute;
   top: 0;
   left: 0;
   height: 100%;
   width: 100%;
   overflow-y: auto;
-  padding: $phone--padding-top calc($phone--padding-right + $scrollbar--gap)
-    $phone--padding-bottom $phone--padding-left;
+  scroll-behavior: auto;
+  scrollbar-color: none;
+  scrollbar-width: none;
+  padding: $phone--padding-top $scrollbar--gap 0 $past-messages--padding-left;
 }
 
 .message {
@@ -134,10 +138,12 @@ body {
 }
 
 .chatbox {
-  background-color: transparent;
+  z-index: 2;
   display: flex;
   justify-content: space-between;
-  margin-top: 0.5rem;
+  padding: 1rem;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
 }
 
 .chatbox input {
