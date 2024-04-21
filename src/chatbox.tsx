@@ -4,6 +4,7 @@ import { SendMessage, SetCurrSelectedPhone } from './App';
 import { InputRef } from './PhoneView';
 
 interface Props {
+  chatbox_ref: Ref<HTMLFormElement>;
   input_ref: Ref<InputRef>;
   user_id: UserId;
   sendMessage: SendMessage;
@@ -11,6 +12,7 @@ interface Props {
 }
 
 export function Chatbox({
+  chatbox_ref,
   input_ref,
   user_id,
   sendMessage,
@@ -26,7 +28,7 @@ export function Chatbox({
   };
 
   return (
-    <form className="chatbox" onSubmit={handleSubmit}>
+    <form className="chatbox" onSubmit={handleSubmit} ref={chatbox_ref}>
       <input
         ref={input_ref}
         value={curr_text}
