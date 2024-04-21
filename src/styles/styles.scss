@@ -74,6 +74,7 @@ body {
   padding: 1rem;
   margin: 1rem 0;
   padding: 0 1rem; // Space between scrollbar and content is controlled by padding
+  max-width: 100%;
 }
 
 .past_messages_wrapper .curr_user {
@@ -86,6 +87,8 @@ body {
   border-radius: 7px;
   padding: 5px 10px;
   margin: 0.5rem 0;
+  max-width: 100%;
+  overflow-wrap: break-word;
 }
 
 .chatbox {
