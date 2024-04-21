@@ -28,9 +28,17 @@ body {
   display: flex;
   align-items: center;
   height: 100%;
+  width: 100%;
 
   &.selected_phone .phone_background {
     background-color: blue;
+  }
+
+  &:nth-child(1) {
+    justify-content: flex-end;
+  }
+  &:last-child {
+    justify-content: flex-start;
   }
 }
 
@@ -39,8 +47,10 @@ body {
   position: absolute;
   top: 0;
   left: 0;
+  cursor: pointer;
   height: 100%;
   width: 100%;
+  border: none;
 }
 
 .phone {
@@ -53,7 +63,7 @@ body {
   border-radius: 10px;
   height: 600px;
   width: 300px;
-  margin: 1rem;
+  margin: 2rem;
 }
 
 .past_messages_wrapper {
