@@ -1,3 +1,12 @@
+$phone-wrapper--background: #272523;
+$phone-wrapper--deselected--background: rgba(#272523, 0.9);
+$phone--deselected-blur: 1rem;
+$phone--background: black;
+$phone--border-radius: 10px;
+$message--border-radius: 7px;
+$message--background: rgb(64, 140, 227);
+$message--curr-user--background: gray;
+
 * {
   box-sizing: border-box;
 }
@@ -32,7 +41,19 @@ body {
 
   &.selected_phone .phone_background {
     cursor: auto;
-    background-color: blue;
+    z-index: 1;
+    background: $phone-wrapper--background;
+  }
+
+  &:not(.selected_phone) {
+    .phone_background {
+      z-index: 3;
+      cursor: pointer;
+      background: $phone-wrapper--deselected--background;
+    }
+    .phone {
+      filter: blur($phone--deselected-blur);
+    }
   }
 
   &:nth-child(1) {
@@ -44,11 +65,9 @@ body {
 }
 
 .phone_background {
-  z-index: 1;
   position: absolute;
   top: 0;
   left: 0;
-  cursor: pointer;
   height: 100%;
   width: 100%;
   border: none;
@@ -60,8 +79,8 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: black;
-  border-radius: 10px;
+  background-color: $phone--background;
+  border-radius: $phone--border-radius;
   height: 600px;
   width: 300px;
   margin: 2rem;
@@ -76,16 +95,16 @@ body {
   margin: 1rem 0;
   padding: 0 1rem; // Space between scrollbar and content is controlled by padding
   max-width: 100%;
-}
 
-.past_messages_wrapper .curr_user {
-  align-self: end;
-  background-color: gray;
+  & .curr_user {
+    align-self: end;
+    background: $message--curr-user--background;
+  }
 }
 
 .message {
-  background-color: rgb(64, 140, 227);
-  border-radius: 7px;
+  background: $message--background;
+  border-radius: $message--border-radius;
   padding: 5px 10px;
   margin: 0.5rem 0;
   max-width: 100%;
