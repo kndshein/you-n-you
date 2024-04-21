@@ -1,2 +1,2 @@
-export type UserId = number;
+export type UserId = string;
 export type Message = string;

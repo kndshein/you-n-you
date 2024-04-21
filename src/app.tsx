@@ -11,10 +11,12 @@ export type PastMessage = {
 export type PastMessages = PastMessage[];
 
 export type SendMessage = (user_id: UserId, message: Message) => void;
+export type SetCurrSelectedPhone = (user_id: string) => void;
 
 export function App() {
-  const [users] = useState([1, 2]);
+  const [users] = useState(['1', '2']);
   const [past_messages, setPastMessages] = useState<PastMessages>([]);
+  const [curr_selected_phone, setCurrSelectedPhone] = useState('1');
 
   const sendMessage: SendMessage = (user_id, text) => {
     const past_messages_clone = [...past_messages];
@@ -36,6 +38,8 @@ export function App() {
             user_id={user_id}
             past_messages={past_messages}
             sendMessage={sendMessage}
+            is_curr_selected_phone={curr_selected_phone == user_id}
+            setCurrSelectedPhone={setCurrSelectedPhone}
           />
         );
       })}
