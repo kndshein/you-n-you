@@ -30,7 +30,9 @@ export function PhoneView({
     >
       <button
         className="phone_background"
-        onClick={() => input_ref.current?.focus()}
+        onClick={() => {
+          if (!is_curr_selected_phone) input_ref.current?.focus();
+        }}
       ></button>
       <section className="phone">
         <div className="past_messages_wrapper">
