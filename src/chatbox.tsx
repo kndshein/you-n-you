@@ -19,6 +19,7 @@ export function Chatbox({
   const [curr_text, setCurrText] = useState('');
 
   const handleSubmit = (event: SubmitEvent) => {
+    if (!curr_text) return;
     event.preventDefault();
     sendMessage(user_id, curr_text);
     setCurrText('');
@@ -34,7 +35,9 @@ export function Chatbox({
         }}
         onFocus={() => setCurrSelectedPhone(user_id)}
       />
-      <button type="submit">Send</button>
+      <button type="submit" disabled={!curr_text}>
+        Send
+      </button>
     </form>
   );
 }
