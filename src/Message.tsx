@@ -25,17 +25,15 @@ export function Message({ message, user_id, style, setPastMessages }: Props) {
       const cloned_reaction = {
         ...cloned_past_messages[curr_message_id].reaction,
       };
-      const curr_reacted_users = cloned_reaction[reaction_type];
-      if (curr_reacted_users) {
-        const curr_user_idx = curr_reacted_users.indexOf(user_id);
-        if (curr_user_idx != -1) {
-          curr_reacted_users.splice(curr_user_idx, 1);
-          cloned_reaction[reaction_type] = curr_reacted_users;
+      const curr_reacted_user = cloned_reaction[user_id];
+      if (curr_reacted_user) {
+        if (curr_reacted_user == reaction_type) {
+          delete cloned_reaction[user_id];
         } else {
-          cloned_reaction[reaction_type] = [user_id, ...curr_reacted_users];
+          cloned_reaction[user_id] = reaction_type;
         }
       } else {
-        cloned_reaction[reaction_type] = [user_id];
+        cloned_reaction[user_id] = reaction_type;
       }
       cloned_past_messages[curr_message_id].reaction = cloned_reaction;
       return cloned_past_messages;
@@ -63,16 +61,11 @@ export function Message({ message, user_id, style, setPastMessages }: Props) {
         }`}
       >
         {reaction_dict.map((reaction_obj) => {
-          const curr_reaction_obj = message.reaction;
-          const curr_reaction_type_obj =
-            curr_reaction_obj && curr_reaction_obj[reaction_obj.name];
+          const curr_user_reaction = message.reaction[user_id];
           return (
             <button
               className={`${
-                curr_reaction_type_obj &&
-                curr_reaction_type_obj.includes(user_id)
-                  ? 'selected'
-                  : ''
+                curr_user_reaction == reaction_obj.name ? 'selected' : ''
               }`}
               onClick={() => handleReactionClick(reaction_obj.name)}
             >

@@ -13,9 +13,8 @@ export type PastMessage = {
   is_end: boolean;
   reaction:
     | {
-        [reaction_type in ReactionType]?: UserId[];
-      }
-    | null;
+        [user_id in UserId]: ReactionType;
+      };
 };
 export type PastMessages = PastMessage[];
 export type SetPastMessages = React.Dispatch<
@@ -66,7 +65,7 @@ export function App() {
       date: new Date(),
       is_start: is_new_message_chain,
       is_end: true,
-      reaction: null,
+      reaction: {},
     };
     if (is_first_message) {
       setPastMessages([new_message]);
