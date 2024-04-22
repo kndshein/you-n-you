@@ -1,3 +1,4 @@
+$font-family: 'Helvetica', 'Arial', sans-serif;
 $phone-wrapper--background: #272523;
 $phone-wrapper--deselected--background: rgba(#272523, 0.9);
 $phone--deselected-blur: 1.5rem;
@@ -24,7 +25,7 @@ $chatbox--padding-right: 1rem;
 $chatbox--padding-bottom: 1rem;
 $chatbox--padding-left: 1rem;
 $chatbox--input--padding-top: 0.3rem;
-$chatbox--input--padding-right: 0.5rem;
+$chatbox--input--padding-right: 2rem;
 $chatbox--input--padding-bottom: 0.3rem;
 $chatbox--input--padding-left: 0.5rem;
 $chatbox--submit-btn--background: $message--curr-user--background;
@@ -43,6 +44,7 @@ body {
   height: 100vh;
   width: 100vw;
   margin: 0;
+  font-family: $font-family;
 }
 
 #app {
@@ -157,8 +159,9 @@ body {
   position: relative;
   background: $message--background;
   border-radius: $message--border-radius;
-  padding: 5px 10px;
+  padding: 0.4rem 0.6rem;
   margin: 0.1rem 0 0;
+  font-size: 0.9rem;
   max-width: 100%;
   color: $message--color;
   overflow-wrap: break-word;
@@ -250,7 +253,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
   top: calc($chatbox--padding-top + $chatbox--input--padding-top);
   right: calc($chatbox--padding-right + 5px);
   background: $chatbox--submit-btn--background;
@@ -265,5 +267,9 @@ body {
   &:disabled {
     background: $chatbox--submit-btn--disabled--background;
     color: $chatbox--submit-btn--disabled--color;
+  }
+
+  &:not(:disabled) {
+    cursor: pointer;
   }
 }
