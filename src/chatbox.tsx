@@ -38,6 +38,7 @@ export function Chatbox({
           setCurrText(event.currentTarget.value);
         }}
         onFocus={() => setCurrSelectedPhone(user_id)}
+        placeholder="iMessage"
       />
       <button
         type="submit"

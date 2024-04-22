@@ -24,10 +24,13 @@ $chatbox--padding-top: 1rem;
 $chatbox--padding-right: 1rem;
 $chatbox--padding-bottom: 1rem;
 $chatbox--padding-left: 1rem;
-$chatbox--input--padding-top: 0.3rem;
+$chatbox--input--padding-top: 0.4rem;
 $chatbox--input--padding-right: 2rem;
-$chatbox--input--padding-bottom: 0.3rem;
-$chatbox--input--padding-left: 0.5rem;
+$chatbox--input--padding-bottom: 0.4rem;
+$chatbox--input--padding-left: 0.7rem;
+$chatbox--input--border-radius: 2rem;
+$chatbox--input--border: 2px rgba(255, 255, 255, 0.3) solid;
+$chatbox--input--placeholder--color: rgba(255, 255, 255, 0.5);
 $chatbox--submit-btn--background: $message--curr-user--background;
 $chatbox--submit-btn--color: white;
 $chatbox--submit-btn--disabled--background: rgb(44, 44, 46);
@@ -161,7 +164,7 @@ body {
   border-radius: $message--border-radius;
   padding: 0.4rem 0.6rem;
   margin: 0.1rem 0 0;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   max-width: 100%;
   color: $message--color;
   overflow-wrap: break-word;
@@ -241,11 +244,15 @@ body {
 .chatbox_input {
   width: 100%;
   background-color: transparent;
-  border: 2px rgba(255, 255, 255, 0.2) solid;
-  border-radius: 14px;
+  border: $chatbox--input--border;
+  border-radius: $chatbox--input--border-radius;
   color: white;
   padding: $chatbox--input--padding-top $chatbox--input--padding-right
     $chatbox--input--padding-bottom $chatbox--input--padding-left;
+
+  &::placeholder {
+    color: $chatbox--input--placeholder--color;
+  }
 }
 
 .chatbox_submit_btn {
@@ -254,7 +261,7 @@ body {
   justify-content: center;
   align-items: center;
   top: calc($chatbox--padding-top + $chatbox--input--padding-top);
-  right: calc($chatbox--padding-right + 5px);
+  right: calc($chatbox--padding-right + 7px);
   background: $chatbox--submit-btn--background;
   color: $chatbox--submit-btn--color;
   border: none;
