@@ -2,7 +2,7 @@ $phone-wrapper--background: #272523;
 $phone-wrapper--deselected--background: rgba(#272523, 0.9);
 $phone--deselected-blur: 1.5rem;
 $phone--background: black;
-$phone--border-radius: 10px;
+$phone--border-radius: 25px;
 $phone--padding-top: 1rem;
 $phone--padding-right: 0.5rem;
 $phone-header--padding: 1rem;
@@ -16,7 +16,8 @@ $message--color: white;
 $message--curr-user--background: rgb(10, 132, 255);
 $scrollbar--color: rgb(142, 142, 147);
 $scrollbar--gap: 1rem;
-$glass-effect--blur: 15px;
+$glass-effect--blur: blur(15px);
+$glass-effect--saturate: saturate(150%);
 $chatbox--background: rgba(0, 0, 0, 0.4);
 $chatbox--padding-top: 1rem;
 $chatbox--padding-right: 1rem;
@@ -117,7 +118,7 @@ body {
   justify-content: center;
   align-items: center;
   background: $phone-header--background;
-  backdrop-filter: blur($glass-effect--blur);
+  backdrop-filter: $glass-effect--blur $glass-effect--saturate;
   color: $phone-header--color;
   padding: $phone-header--padding;
 }
@@ -175,7 +176,7 @@ body {
     $chatbox--padding-bottom $chatbox--padding-left;
   padding-right: $chatbox--padding-right;
   background: $chatbox--background;
-  backdrop-filter: blur($glass-effect--blur);
+  backdrop-filter: $glass-effect--blur $glass-effect--saturate;
 }
 
 .chatbox_input {
