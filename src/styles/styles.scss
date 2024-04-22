@@ -1,6 +1,6 @@
 $phone-wrapper--background: #272523;
 $phone-wrapper--deselected--background: rgba(#272523, 0.9);
-$phone--deselected-blur: 1rem;
+$phone--deselected-blur: 1.5rem;
 $phone--background: black;
 $phone--border-radius: 10px;
 $phone--padding-top: 1rem;
@@ -11,13 +11,23 @@ $phone-header--color: white;
 $past-messages--padding-left: 1rem;
 $past-messages--background: $phone--background;
 $message--border-radius: 15px;
-$message--background: #8e8e93;
+$message--background: rgb(44, 44, 46);
+$message--color: white;
 $message--curr-user--background: rgb(64, 156, 255);
-$chatbox--background: rgba(0, 0, 0, 0.4);
-$chatbox--padding: 1rem;
 $scrollbar--color: rgb(142, 142, 147);
 $scrollbar--gap: 1rem;
 $glass-effect--blur: 15px;
+$chatbox--background: rgba(0, 0, 0, 0.4);
+$chatbox--padding-top: 1rem;
+$chatbox--padding-right: 1rem;
+$chatbox--padding-bottom: 1rem;
+$chatbox--padding-left: 1rem;
+$chatbox--input--padding-top: 0.3rem;
+$chatbox--input--padding-right: 0.5rem;
+$chatbox--input--padding-bottom: 0.3rem;
+$chatbox--input--padding-left: 0.5rem;
+$chatbox--submit-btn--background: rgb(64, 156, 255);
+$chatbox--submit-btn--color: white;
 
 * {
   box-sizing: border-box;
@@ -96,6 +106,7 @@ body {
   height: 600px;
   width: 300px;
   margin: 2rem;
+  overflow: hidden;
 }
 
 .phone_header {
@@ -149,18 +160,43 @@ body {
   padding: 5px 10px;
   margin: 0.5rem 0;
   max-width: 100%;
+  color: $message--color;
   overflow-wrap: break-word;
 }
 
 .chatbox {
   z-index: 2;
+  position: relative;
   display: flex;
   justify-content: space-between;
-  padding: $chatbox--padding;
+  padding: $chatbox--padding-top $chatbox--padding-right
+    $chatbox--padding-bottom $chatbox--padding-left;
+  padding-right: $chatbox--padding-right;
   background: $chatbox--background;
   backdrop-filter: blur($glass-effect--blur);
 }
 
-.chatbox input {
+.chatbox_input {
   width: 100%;
+  background-color: transparent;
+  border: 2px rgba(255, 255, 255, 0.2) solid;
+  border-radius: 14px;
+  color: white;
+  padding: $chatbox--input--padding-top $chatbox--input--padding-right
+    $chatbox--input--padding-bottom $chatbox--input--padding-left;
+}
+
+.chatbox_submit_btn {
+  position: absolute;
+  cursor: pointer;
+  top: calc($chatbox--padding-top + $chatbox--input--padding-top);
+  right: calc($chatbox--padding-right + $chatbox--input--padding-right);
+  background: $chatbox--submit-btn--background;
+  color: $chatbox--submit-btn--color;
+  border: none;
+  border-radius: 14px;
+  height: calc(
+    100% - $chatbox--padding-top - $chatbox--padding-bottom -
+      $chatbox--input--padding-top - $chatbox--input--padding-bottom
+  );
 }

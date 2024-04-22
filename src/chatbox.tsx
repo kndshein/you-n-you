@@ -31,13 +31,18 @@ export function Chatbox({
     <form className="chatbox" onSubmit={handleSubmit} ref={chatbox_ref}>
       <input
         ref={input_ref}
+        className="chatbox_input"
         value={curr_text}
         onInput={(event) => {
           setCurrText(event.currentTarget.value);
         }}
         onFocus={() => setCurrSelectedPhone(user_id)}
       />
-      <button type="submit" disabled={!curr_text}>
+      <button
+        type="submit"
+        className="chatbox_submit_btn"
+        disabled={!curr_text}
+      >
         Send
       </button>
     </form>
