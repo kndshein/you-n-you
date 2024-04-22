@@ -101,6 +101,40 @@ body {
   height: 100%;
   width: 100%;
   border: none;
+
+  &:hover .phone_switch_disclaimer {
+    color: rgba(0, 0, 0, 0.6);
+
+    .instruction_wrapper {
+      background: rgba(0, 0, 0, 0.3);
+      color: rgba(255, 255, 255, 0.7);
+    }
+  }
+}
+
+.phone_switch_disclaimer {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: stretch;
+  font-size: 2rem;
+  gap: 1rem;
+  padding: 1rem;
+
+  .instruction_wrapper {
+    vertical-align: middle;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 1rem;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.2);
+
+    &.click {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
 }
 
 .phone {

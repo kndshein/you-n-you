@@ -3,6 +3,7 @@ import { PastMessages, SendMessage, SetCurrSelectedPhone } from './App';
 import { Chatbox } from './ChatBox';
 import { UserId } from './types';
 import { PastMessagesWrapper } from './PastMessagesWrapper';
+import { PiCursorClick } from 'react-icons/pi';
 
 interface Props {
   user_id: UserId;
@@ -60,7 +61,16 @@ export function PhoneView({
         onClick={() => {
           if (!is_curr_selected_phone) input_ref.current?.focus();
         }}
-      ></button>
+      >
+        {!is_curr_selected_phone && (
+          <div className="phone_switch_disclaimer">
+            <div className="instruction_wrapper click">
+              <PiCursorClick />
+            </div>
+            <p className="instruction_wrapper">Ctrl + Shift + U</p>
+          </div>
+        )}
+      </button>
       <section className="phone">
         <section className="phone_header">You</section>
         <PastMessagesWrapper
