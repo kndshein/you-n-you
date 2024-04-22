@@ -2,6 +2,7 @@ import { useState } from 'preact/hooks';
 import './styles/styles.scss';
 import { Message, UserId } from './types';
 import { PhoneView } from './PhoneView';
+import { useHotkeys } from 'react-hotkeys-hook';
 
 export type PastMessage = {
   user_id: UserId;
@@ -19,6 +20,15 @@ export function App() {
   const [users] = useState(['1', '2']);
   const [past_messages, setPastMessages] = useState<PastMessages>([]);
   const [curr_selected_phone, setCurrSelectedPhone] = useState('1');
+
+  const handleShortcut = () => {
+    // https://stackoverflow.com/a/54770183
+    const curr_user_idx = users.indexOf(curr_selected_phone);
+    const next__user_idx = (curr_user_idx + 1) % users.length;
+    setCurrSelectedPhone(users[next__user_idx]);
+  };
+
+  useHotkeys('ctrl+shift+u', handleShortcut, { enableOnFormTags: true });
 
   const sendMessage: SendMessage = (user_id, text) => {
     const is_first_message = !past_messages.length;

@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "preact": "^10.19.6",
+    "react-hotkeys-hook": "^4.5.0",
     "react-icons": "^5.1.0"
   },
   "devDependencies": {

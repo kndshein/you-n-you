@@ -45,6 +45,10 @@ export function PhoneView({
     }
   }, [chatbox_ref.current?.clientHeight]);
 
+  useEffect(() => {
+    if (is_curr_selected_phone) input_ref.current?.focus();
+  }, [is_curr_selected_phone]);
+
   return (
     <section
       className={`phone_wrapper ${
