@@ -312,8 +312,9 @@ body {
 }
 
 .reaction_icon_group {
+  z-index: 5;
   position: absolute;
-  top: -35px;
+  bottom: 35px;
   display: none;
   gap: 0.5rem;
   background: $reaction-group--background;

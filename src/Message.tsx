@@ -1,6 +1,5 @@
 import { PastMessage, ReactionType, SetPastMessages } from './App';
 import { JSX } from 'preact/jsx-runtime';
-import { useState } from 'preact/hooks';
 import { UserId } from './types';
 import { reaction_dict } from './utils/utils';
 
@@ -9,11 +8,18 @@ interface Props {
   user_id: UserId;
   style: JSX.AllCSSProperties;
   setPastMessages: SetPastMessages;
+  reaction_popup_message_id: string;
+  setReactionPopupMessageId: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export function Message({ message, user_id, style, setPastMessages }: Props) {
-  const [is_reaction_popup_open, setIsReactionPopupOpen] = useState(false);
-
+export function Message({
+  message,
+  user_id,
+  style,
+  setPastMessages,
+  reaction_popup_message_id,
+  setReactionPopupMessageId,
+}: Props) {
   const handleReactionClick = (reaction_type: ReactionType) => {
     setPastMessages((past_messages) => {
       const cloned_past_messages = past_messages.slice();
@@ -38,7 +44,7 @@ export function Message({ message, user_id, style, setPastMessages }: Props) {
       cloned_past_messages[curr_message_id].reaction = cloned_reaction;
       return cloned_past_messages;
     });
-    setIsReactionPopupOpen(false);
+    setReactionPopupMessageId('');
   };
 
   return (
@@ -51,13 +57,17 @@ export function Message({ message, user_id, style, setPastMessages }: Props) {
           message.is_end ? 'chain_last' : ''
         }`}
         style={style}
-        onClick={() => setIsReactionPopupOpen((prev_value) => !prev_value)}
+        onClick={() =>
+          setReactionPopupMessageId((prev_value) => {
+            return prev_value == message.message_id ? '' : message.message_id;
+          })
+        }
       >
         {message.text}
       </p>
       <div
         className={`reaction_icon_group ${
-          is_reaction_popup_open ? 'open' : ''
+          reaction_popup_message_id == message.message_id ? 'open' : ''
         }`}
       >
         {reaction_dict.map((reaction_obj) => {

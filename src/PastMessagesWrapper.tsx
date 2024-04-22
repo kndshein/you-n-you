@@ -4,6 +4,7 @@ import { UserId } from './types';
 import { GoDotFill } from 'react-icons/go';
 import { DateTime } from 'luxon';
 import { Message } from './Message';
+import { useState } from 'preact/hooks';
 
 type Props = {
   component_ref: Ref<HTMLDivElement>;
@@ -28,6 +29,8 @@ export function PastMessagesWrapper({
   is_cloned,
   chatbox_height,
 }: Props) {
+  const [reaction_popup_message_id, setReactionPopupMessageId] = useState('');
+
   return (
     <div
       ref={component_ref}
@@ -65,6 +68,8 @@ export function PastMessagesWrapper({
               user_id={user_id}
               style={style}
               setPastMessages={setPastMessages}
+              reaction_popup_message_id={reaction_popup_message_id}
+              setReactionPopupMessageId={setReactionPopupMessageId}
             />
             {show_date && (
               <p className="date">
