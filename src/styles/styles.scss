@@ -201,6 +201,7 @@ body {
   max-width: 100%;
   color: $message--color;
   overflow-wrap: break-word;
+  white-space: pre-line; // So that newlines show up
 
   &.chain_start {
     margin-top: 1rem;

@@ -45,8 +45,6 @@ export function Chatbox({
     submitMessage();
   };
 
-  console.log(curr_text);
-
   return (
     <form className="chatbox" onSubmit={handleSubmit} ref={chatbox_ref}>
       <ReactTextareaAutosize
