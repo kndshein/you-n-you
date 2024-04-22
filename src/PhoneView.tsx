@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'preact/hooks';
 import { PastMessages, SendMessage, SetCurrSelectedPhone } from './App';
 import { Chatbox } from './ChatBox';
 import { UserId } from './types';
+import { PastMessagesWrapper } from './PastMessagesWrapper';
 
 interface Props {
   user_id: UserId;
@@ -21,14 +22,15 @@ export function PhoneView({
   setCurrSelectedPhone,
 }: Props) {
   const input_ref = useRef<InputRef>(null);
-  const real_scroll_ref = useRef<HTMLDivElement>(null);
-  const fake_scroll_ref = useRef<HTMLDivElement>(null);
+  const real_past_messages_ref = useRef<HTMLDivElement>(null);
+  const cloned_past_messages_ref = useRef<HTMLDivElement>(null);
   const chatbox_ref = useRef<HTMLFormElement>(null);
   const [chatbox_height, setChatBoxHeight] = useState(0);
 
   const handleScrolling = () => {
-    if (fake_scroll_ref.current && real_scroll_ref.current)
-      fake_scroll_ref.current.scrollTop = real_scroll_ref.current.scrollTop;
+    if (cloned_past_messages_ref.current && real_past_messages_ref.current)
+      cloned_past_messages_ref.current.scrollTop =
+        real_past_messages_ref.current.scrollTop;
   };
 
   useEffect(() => {
@@ -56,52 +58,20 @@ export function PhoneView({
         }}
       ></button>
       <section className="phone">
-        <div
-          ref={real_scroll_ref}
-          className="past_messages_wrapper"
-          onScroll={handleScrolling}
-        >
-          {past_messages
-            .slice() // Slice since `reverse()` mutates the array
-            .reverse()
-            .map((message) => {
-              const is_curr_user_message = message.user_id == user_id;
-              return (
-                <p
-                  key={message.datetime}
-                  className={`${
-                    is_curr_user_message ? 'curr_user' : ''
-                  } message`}
-                >
-                  {message.text}
-                </p>
-              );
-            })}
-        </div>
-        <div
-          ref={fake_scroll_ref}
-          className="past_messages_wrapper past_messages_wrapper_clone"
-        >
-          {past_messages
-            .slice() // Slice since `reverse()` mutates the array
-            .reverse()
-            .map((message, idx) => {
-              const is_curr_user_message = message.user_id == user_id;
-              return (
-                <p
-                  key={message.datetime}
-                  className={`${
-                    is_curr_user_message ? 'curr_user' : ''
-                  } message`}
-                  style={
-                    idx == 0 ? { marginBottom: `${chatbox_height + 8}px` } : {}
-                  }
-                >
-                  {message.text}
-                </p>
-              );
-            })}
-        </div>
+        <PastMessagesWrapper
+          component_ref={real_past_messages_ref}
+          past_messages={past_messages}
+          user_id={user_id}
+          handleScrolling={handleScrolling}
+        />
+        <PastMessagesWrapper
+          component_ref={cloned_past_messages_ref}
+          past_messages={past_messages}
+          user_id={user_id}
+          handleScrolling={handleScrolling}
+          is_cloned
+          chatbox_height={chatbox_height}
+        />
         <Chatbox
           chatbox_ref={chatbox_ref}
           input_ref={input_ref}
