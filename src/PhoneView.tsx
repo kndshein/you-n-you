@@ -61,7 +61,7 @@ export function PhoneView({
 
   return (
     <section
-      className={`phone_wrapper ${
+      className={`phone_container ${
         is_curr_selected_phone ? 'selected_phone' : ''
       }`}
     >

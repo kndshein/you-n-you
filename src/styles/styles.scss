@@ -1,6 +1,6 @@
 $font-family: 'Helvetica', 'Arial', sans-serif;
-$phone-wrapper--background: #272523;
-$phone-wrapper--deselected--background: rgba(#272523, 0.9);
+$phone-container--background: #272523;
+$phone-container--deselected--background: rgba(#272523, 0.9);
 $phone--deselected-blur: 1.5rem;
 $phone--background: black;
 $phone--border-radius: 25px;
@@ -61,7 +61,7 @@ body {
   justify-content: center;
 }
 
-.phone_wrapper {
+.phone_container {
   position: relative;
   display: flex;
   align-items: center;
@@ -71,14 +71,14 @@ body {
   &.selected_phone .phone_background {
     cursor: auto;
     z-index: 1;
-    background: $phone-wrapper--background;
+    background: $phone-container--background;
   }
 
   &:not(.selected_phone) {
     .phone_background {
       z-index: 3;
       cursor: pointer;
-      background: $phone-wrapper--deselected--background;
+      background: $phone-container--deselected--background;
     }
     .phone {
       filter: blur($phone--deselected-blur);
@@ -145,9 +145,12 @@ body {
   background-color: $phone--background;
   border-radius: $phone--border-radius;
   height: 600px;
-  width: 300px;
-  margin: 2rem;
+  width: 275px;
+  margin: clamp(2rem, 3vw, 5rem);
   overflow: hidden;
+  box-shadow: 0px 0px 0px 2px rgba(255, 255, 255, 0.1),
+    0px 0px 0px 10px $phone-container--background,
+    0px 0px 0px 12px rgba(255, 255, 255, 0.4);
 }
 
 .phone_header {
