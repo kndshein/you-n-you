@@ -25,9 +25,15 @@ export function Message({ message, user_id, style, setPastMessages }: Props) {
       const cloned_reaction = {
         ...cloned_past_messages[curr_message_id].reaction,
       };
-      const curr_reaction_type = cloned_reaction[reaction_type];
-      if (curr_reaction_type) {
-        cloned_reaction[reaction_type] = [user_id, ...curr_reaction_type];
+      const curr_reacted_users = cloned_reaction[reaction_type];
+      if (curr_reacted_users) {
+        const curr_user_idx = curr_reacted_users.indexOf(user_id);
+        if (curr_user_idx != -1) {
+          curr_reacted_users.splice(curr_user_idx, 1);
+          cloned_reaction[reaction_type] = curr_reacted_users;
+        } else {
+          cloned_reaction[reaction_type] = [user_id, ...curr_reacted_users];
+        }
       } else {
         cloned_reaction[reaction_type] = [user_id];
       }

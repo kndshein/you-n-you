@@ -13,7 +13,7 @@ export type PastMessage = {
   is_end: boolean;
   reaction:
     | {
-        [reaction_type in ReactionType]?: UserId[];
+        [user_id in UserId]?: ReactionType;
       }
     | null;
 };
