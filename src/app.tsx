@@ -8,6 +8,7 @@ export type PastMessage = {
   text: Message;
   datetime: number;
   is_start: boolean;
+  is_end: boolean;
 };
 export type PastMessages = PastMessage[];
 
@@ -20,15 +21,29 @@ export function App() {
   const [curr_selected_phone, setCurrSelectedPhone] = useState('1');
 
   const sendMessage: SendMessage = (user_id, text) => {
+    const is_first_message = !past_messages.length;
+    const is_new_message_chain =
+      !is_first_message && past_messages[0].user_id != user_id;
+    const previous_message: PastMessage = {
+      ...past_messages[0],
+      is_end: is_new_message_chain,
+    };
     const new_message: PastMessage = {
       user_id: user_id,
       text: text,
       datetime: Date.now(),
-      is_start: past_messages.length
-        ? past_messages[0].user_id != user_id
-        : true,
+      is_start: is_new_message_chain,
+      is_end: true,
     };
-    setPastMessages([new_message, ...past_messages]);
+    if (is_first_message) {
+      setPastMessages([new_message]);
+    } else {
+      setPastMessages([
+        new_message,
+        previous_message,
+        ...past_messages.slice(1),
+      ]);
+    }
   };
 
   return (

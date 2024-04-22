@@ -37,8 +37,10 @@ export function PastMessagesWrapper({
         return (
           <p
             key={message.datetime}
-            className={`message ${is_curr_user_message ? 'curr_user' : ''} ${
-              message.is_start ? 'start_message' : ''
+            className={`message ${
+              is_curr_user_message ? 'curr_user' : 'other_user'
+            } ${message.is_start ? 'chain_start' : ''} ${
+              message.is_end ? 'chain_last' : ''
             }`}
             style={style}
           >
