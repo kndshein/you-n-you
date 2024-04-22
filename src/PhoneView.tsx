@@ -58,6 +58,7 @@ export function PhoneView({
         }}
       ></button>
       <section className="phone">
+        <section className="phone_header">You</section>
         <PastMessagesWrapper
           component_ref={real_past_messages_ref}
           past_messages={past_messages}

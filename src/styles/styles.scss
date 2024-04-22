@@ -5,14 +5,19 @@ $phone--background: black;
 $phone--border-radius: 10px;
 $phone--padding-top: 1rem;
 $phone--padding-right: 0.5rem;
+$phone-header--padding: 1rem;
+$phone-header--background: rgba(32, 32, 32, 0.8);
+$phone-header--color: white;
 $past-messages--padding-left: 1rem;
 $past-messages--background: $phone--background;
 $message--border-radius: 15px;
 $message--background: #8e8e93;
 $message--curr-user--background: rgb(64, 156, 255);
-$chatbox--padding: 4px 1rem 1rem;
+$chatbox--background: rgba(0, 0, 0, 0.4);
+$chatbox--padding: 1rem;
 $scrollbar--color: rgb(142, 142, 147);
 $scrollbar--gap: 1rem;
+$glass-effect--blur: 15px;
 
 * {
   box-sizing: border-box;
@@ -90,8 +95,18 @@ body {
   border-radius: $phone--border-radius;
   height: 600px;
   width: 300px;
-  padding-top: $phone--padding-top;
   margin: 2rem;
+}
+
+.phone_header {
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: $phone-header--background;
+  backdrop-filter: blur($glass-effect--blur);
+  color: $phone-header--color;
+  padding: $phone-header--padding;
 }
 
 .past_messages_wrapper {
@@ -141,9 +156,9 @@ body {
   z-index: 2;
   display: flex;
   justify-content: space-between;
-  padding: 1rem;
-  background-color: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(10px);
+  padding: $chatbox--padding;
+  background: $chatbox--background;
+  backdrop-filter: blur($glass-effect--blur);
 }
 
 .chatbox input {
