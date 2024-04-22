@@ -161,10 +161,14 @@ body {
   background: $message--background;
   border-radius: $message--border-radius;
   padding: 5px 10px;
-  margin: 0.5rem 0;
+  margin: 0.1rem 0 0;
   max-width: 100%;
   color: $message--color;
   overflow-wrap: break-word;
+
+  &.start_message {
+    margin-top: 1rem;
+  }
 }
 
 .chatbox {
@@ -176,7 +180,7 @@ body {
     $chatbox--padding-bottom $chatbox--padding-left;
   padding-right: $chatbox--padding-right;
   background: $chatbox--background;
-  backdrop-filter: $glass-effect--blur $glass-effect--saturate;
+  backdrop-filter: $glass-effect--blur;
 }
 
 .chatbox_input {

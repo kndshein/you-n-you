@@ -29,24 +29,23 @@ export function PastMessagesWrapper({
       }`}
       onScroll={handleScrolling}
     >
-      {past_messages
-        .slice() // Slice since `reverse()` mutates the array
-        .reverse()
-        .map((message, idx) => {
-          const is_curr_user_message = message.user_id == user_id;
-          let style = {};
-          if (is_cloned && idx == 0)
-            style = { marginBottom: `${chatbox_height + 8}px` };
-          return (
-            <p
-              key={message.datetime}
-              className={`${is_curr_user_message ? 'curr_user' : ''} message`}
-              style={style}
-            >
-              {message.text}
-            </p>
-          );
-        })}
+      {past_messages.map((message, idx) => {
+        const is_curr_user_message = message.user_id == user_id;
+        let style = {};
+        if (is_cloned && idx == 0)
+          style = { marginBottom: `${chatbox_height + 8}px` };
+        return (
+          <p
+            key={message.datetime}
+            className={`message ${is_curr_user_message ? 'curr_user' : ''} ${
+              message.is_start ? 'start_message' : ''
+            }`}
+            style={style}
+          >
+            {message.text}
+          </p>
+        );
+      })}
     </div>
   );
 }
