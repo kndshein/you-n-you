@@ -3,6 +3,7 @@ import {
   PastMessages,
   SendMessage,
   SetCurrSelectedPhone,
+  SetPastMessages,
   SetTypingUser,
 } from './App';
 import { Chatbox } from './ChatBox';
@@ -13,6 +14,7 @@ import { PiCursorClick } from 'react-icons/pi';
 interface Props {
   user_id: UserId;
   past_messages: PastMessages;
+  setPastMessages: SetPastMessages;
   sendMessage: SendMessage;
   is_curr_selected_phone: boolean;
   setCurrSelectedPhone: SetCurrSelectedPhone;
@@ -25,6 +27,7 @@ export type InputRef = HTMLTextAreaElement | null;
 export function PhoneView({
   user_id,
   past_messages,
+  setPastMessages,
   sendMessage,
   is_curr_selected_phone,
   setCurrSelectedPhone,
@@ -85,6 +88,7 @@ export function PhoneView({
         <PastMessagesWrapper
           component_ref={real_past_messages_ref}
           past_messages={past_messages}
+          setPastMessages={setPastMessages}
           user_id={user_id}
           handleScrolling={handleScrolling}
           typing_user={typing_user}
@@ -92,6 +96,7 @@ export function PhoneView({
         <PastMessagesWrapper
           component_ref={cloned_past_messages_ref}
           past_messages={past_messages}
+          setPastMessages={setPastMessages}
           user_id={user_id}
           handleScrolling={handleScrolling}
           typing_user={typing_user}

@@ -17,8 +17,8 @@ $message--background: rgb(44, 44, 46);
 $message--color: white;
 $message--curr-user--background: rgb(10, 132, 255);
 $message--first--margin-top: 1rem;
-$reaction-group--color: rgb(133, 133, 133);
 $reaction-group--background: rgb(50, 50, 50);
+$reaction-icon--color: rgb(133, 133, 133);
 $reaction-icon--hover-color: white;
 $scrollbar--color: rgb(142, 142, 147);
 $scrollbar--gap: 1rem;
@@ -313,7 +313,6 @@ body {
 
 .reaction_icon_group {
   position: absolute;
-  color: $reaction-group--color;
   top: -32px;
   display: none;
   gap: 0.5rem;
@@ -325,9 +324,16 @@ body {
     display: flex;
   }
 
-  > *:hover {
-    cursor: pointer;
-    color: $reaction-icon--hover-color;
+  button {
+    background: transparent;
+    padding: 0;
+    border: none;
+    color: $reaction-icon--color;
+
+    &:hover {
+      cursor: pointer;
+      color: $reaction-icon--hover-color;
+    }
   }
 }
 

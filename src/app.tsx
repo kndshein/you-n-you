@@ -11,8 +11,20 @@ export type PastMessage = {
   date: Date;
   is_start: boolean;
   is_end: boolean;
+  reaction: Reaction | null;
 };
 export type PastMessages = PastMessage[];
+export type SetPastMessages = React.Dispatch<
+  React.SetStateAction<PastMessages>
+>;
+
+export type Reaction =
+  | 'heart'
+  | 'thumbs_up'
+  | 'thumbs_down'
+  | 'laugh'
+  | 'emphasis'
+  | 'question_mark';
 
 export type SendMessage = (user_id: UserId, message: Message) => void;
 export type SetCurrSelectedPhone = (user_id: string) => void;
@@ -23,6 +35,8 @@ export function App() {
   const [past_messages, setPastMessages] = useState<PastMessages>([]);
   const [curr_selected_phone, setCurrSelectedPhone] = useState('1');
   const [typing_user, setTypingUser] = useState('');
+
+  console.log(past_messages);
 
   const handleShortcut = () => {
     // https://stackoverflow.com/a/54770183
@@ -48,6 +62,7 @@ export function App() {
       date: new Date(),
       is_start: is_new_message_chain,
       is_end: true,
+      reaction: null,
     };
     if (is_first_message) {
       setPastMessages([new_message]);
@@ -68,6 +83,7 @@ export function App() {
             key={user_id}
             user_id={user_id}
             past_messages={past_messages}
+            setPastMessages={setPastMessages}
             sendMessage={sendMessage}
             is_curr_selected_phone={curr_selected_phone == user_id}
             setCurrSelectedPhone={setCurrSelectedPhone}

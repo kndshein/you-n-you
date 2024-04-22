@@ -1,5 +1,5 @@
 import { Ref } from 'preact';
-import { PastMessages } from './App';
+import { PastMessages, SetPastMessages } from './App';
 import { UserId } from './types';
 import { GoDotFill } from 'react-icons/go';
 import { DateTime } from 'luxon';
@@ -8,6 +8,7 @@ import { Message } from './Message';
 type Props = {
   component_ref: Ref<HTMLDivElement>;
   past_messages: PastMessages;
+  setPastMessages: SetPastMessages;
   user_id: UserId;
   handleScrolling: () => void;
   typing_user: string;
@@ -20,6 +21,7 @@ type ClonedComponent =
 export function PastMessagesWrapper({
   component_ref,
   past_messages,
+  setPastMessages,
   user_id,
   handleScrolling,
   typing_user,
@@ -63,6 +65,7 @@ export function PastMessagesWrapper({
               message={message}
               style={style}
               is_curr_user_message={is_curr_user_message}
+              setPastMessages={setPastMessages}
             />
             {show_date && (
               <p className="date">
