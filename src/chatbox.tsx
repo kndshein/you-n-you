@@ -1,6 +1,6 @@
-import { Ref, useState } from 'preact/hooks';
+import { Ref, useEffect, useState } from 'preact/hooks';
 import { UserId } from './types';
-import { SendMessage, SetCurrSelectedPhone } from './App';
+import { SendMessage, SetCurrSelectedPhone, SetTypingUser } from './App';
 import { InputRef } from './PhoneView';
 import { IoMdArrowRoundUp } from 'react-icons/io';
 import ReactTextareaAutosize from 'react-textarea-autosize';
@@ -11,6 +11,7 @@ interface Props {
   user_id: UserId;
   sendMessage: SendMessage;
   setCurrSelectedPhone: SetCurrSelectedPhone;
+  setTypingUser: SetTypingUser;
 }
 
 export function Chatbox({
@@ -19,6 +20,7 @@ export function Chatbox({
   user_id,
   sendMessage,
   setCurrSelectedPhone,
+  setTypingUser,
 }: Props) {
   const [curr_text, setCurrText] = useState('');
 
@@ -44,6 +46,19 @@ export function Chatbox({
     event.preventDefault();
     submitMessage();
   };
+
+  useEffect(() => {
+    if (curr_text == '') {
+      setTypingUser('');
+      return;
+    }
+    setTypingUser(user_id);
+    const delayDebounceFn = setTimeout(() => {
+      setTypingUser('');
+    }, 2000);
+
+    return () => clearTimeout(delayDebounceFn);
+  }, [curr_text]);
 
   return (
     <form className="chatbox" onSubmit={handleSubmit} ref={chatbox_ref}>

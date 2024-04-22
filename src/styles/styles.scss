@@ -188,6 +188,10 @@ body {
   scrollbar-color: none;
   scrollbar-width: none;
   padding: $phone--padding-top $scrollbar--gap 0 $past-messages--padding-left;
+
+  & .typing {
+    visibility: hidden;
+  }
 }
 
 .message {
@@ -261,6 +265,12 @@ body {
       border-bottom-left-radius: 7px;
     }
   }
+
+  &.typing {
+    display: flex;
+    margin-top: 1rem;
+    color: gray;
+  }
 }
 
 .chatbox {
@@ -314,4 +324,9 @@ body {
   &:not(:disabled) {
     cursor: pointer;
   }
+}
+
+.weeee {
+  color: red;
+  background-color: blue;
 }

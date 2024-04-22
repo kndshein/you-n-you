@@ -15,11 +15,15 @@ export type PastMessages = PastMessage[];
 
 export type SendMessage = (user_id: UserId, message: Message) => void;
 export type SetCurrSelectedPhone = (user_id: string) => void;
+export type SetTypingUser = (user_id: string) => void;
 
 export function App() {
   const [users] = useState(['1', '2']);
   const [past_messages, setPastMessages] = useState<PastMessages>([]);
   const [curr_selected_phone, setCurrSelectedPhone] = useState('1');
+  const [typing_user, setTypingUser] = useState('');
+
+  console.log(typing_user);
 
   const handleShortcut = () => {
     // https://stackoverflow.com/a/54770183
@@ -67,6 +71,8 @@ export function App() {
             sendMessage={sendMessage}
             is_curr_selected_phone={curr_selected_phone == user_id}
             setCurrSelectedPhone={setCurrSelectedPhone}
+            typing_user={typing_user}
+            setTypingUser={setTypingUser}
           />
         );
       })}

@@ -1,5 +1,10 @@
 import { useEffect, useRef, useState } from 'preact/hooks';
-import { PastMessages, SendMessage, SetCurrSelectedPhone } from './App';
+import {
+  PastMessages,
+  SendMessage,
+  SetCurrSelectedPhone,
+  SetTypingUser,
+} from './App';
 import { Chatbox } from './ChatBox';
 import { UserId } from './types';
 import { PastMessagesWrapper } from './PastMessagesWrapper';
@@ -11,6 +16,8 @@ interface Props {
   sendMessage: SendMessage;
   is_curr_selected_phone: boolean;
   setCurrSelectedPhone: SetCurrSelectedPhone;
+  typing_user: string;
+  setTypingUser: SetTypingUser;
 }
 
 export type InputRef = HTMLTextAreaElement | null;
@@ -21,6 +28,8 @@ export function PhoneView({
   sendMessage,
   is_curr_selected_phone,
   setCurrSelectedPhone,
+  typing_user,
+  setTypingUser,
 }: Props) {
   const input_ref = useRef<InputRef>(null);
   const real_past_messages_ref = useRef<HTMLDivElement>(null);
@@ -78,12 +87,14 @@ export function PhoneView({
           past_messages={past_messages}
           user_id={user_id}
           handleScrolling={handleScrolling}
+          typing_user={typing_user}
         />
         <PastMessagesWrapper
           component_ref={cloned_past_messages_ref}
           past_messages={past_messages}
           user_id={user_id}
           handleScrolling={handleScrolling}
+          typing_user={typing_user}
           is_cloned
           chatbox_height={chatbox_height}
         />
@@ -93,6 +104,7 @@ export function PhoneView({
           user_id={user_id}
           sendMessage={sendMessage}
           setCurrSelectedPhone={setCurrSelectedPhone}
+          setTypingUser={setTypingUser}
         />
       </section>
     </section>
