@@ -7,7 +7,7 @@ import { useHotkeys } from 'react-hotkeys-hook';
 export type PastMessage = {
   user_id: UserId;
   text: Message;
-  datetime: Date;
+  date: Date;
   is_start: boolean;
   is_end: boolean;
 };
@@ -43,7 +43,7 @@ export function App() {
     const new_message: PastMessage = {
       user_id: user_id,
       text: text,
-      datetime: new Date(),
+      date: new Date(),
       is_start: is_new_message_chain,
       is_end: true,
     };

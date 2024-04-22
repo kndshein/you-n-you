@@ -45,15 +45,21 @@ export function PastMessagesWrapper({
         let style = {};
         if (is_cloned && idx == 0)
           style = { marginBottom: `${chatbox_height + 8}px` };
+        let show_date = false;
+        if (idx == past_messages.length - 1) {
+          show_date = true;
+        } else {
+          const prev_message = past_messages[idx + 1];
+          const diff_in_min = DateTime.fromJSDate(message.date)
+            .diff(DateTime.fromJSDate(prev_message.date), 'minute')
+            .as('minute');
+          if (diff_in_min > 2) show_date = true;
+        }
+
         return (
           <>
-            <p className="date">
-              {DateTime.fromJSDate(message.datetime).toFormat(
-                "EEE, MMM dd 'at' t"
-              )}
-            </p>
             <p
-              key={message.datetime}
+              key={message.date}
               className={`message ${
                 is_curr_user_message ? 'curr_user' : 'other_user'
               } ${message.is_start ? 'chain_start' : ''} ${
@@ -63,6 +69,13 @@ export function PastMessagesWrapper({
             >
               {message.text}
             </p>
+            {show_date && (
+              <p className="date">
+                {DateTime.fromJSDate(message.date).toFormat(
+                  "EEE, MMM dd 'at' t"
+                )}
+              </p>
+            )}
           </>
         );
       })}
