@@ -39,8 +39,6 @@ export function App() {
   const [curr_selected_phone, setCurrSelectedPhone] = useState('1');
   const [typing_user, setTypingUser] = useState('');
 
-  console.log(past_messages);
-
   const handleShortcut = () => {
     // https://stackoverflow.com/a/54770183
     const curr_user_idx = users.indexOf(curr_selected_phone);

@@ -174,7 +174,6 @@ body {
   z-index: 2;
   display: flex;
   flex-flow: column-reverse;
-  align-items: flex-start;
   overflow-y: auto;
   padding-left: $past-messages--padding-left;
   padding-right: $scrollbar--gap; // Space between scrollbar and content is controlled by padding
@@ -218,6 +217,7 @@ body {
   left: 0;
   height: 100%;
   width: 100%;
+  border: none;
   background-color: rgba(0, 0, 0, 0.8);
 }
 

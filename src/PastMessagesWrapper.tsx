@@ -39,7 +39,12 @@ export function PastMessagesWrapper({
       }`}
       onScroll={handleScrolling}
     >
-      {!!reaction_popup_message_id && <div className="messages_overlay"></div>}
+      {!!reaction_popup_message_id && (
+        <button
+          className="messages_overlay"
+          onClick={() => setReactionPopupMessageId('')}
+        />
+      )}
       {typing_user && typing_user != user_id && (
         <p className="message other_user chain_last typing">
           <GoDotFill />
