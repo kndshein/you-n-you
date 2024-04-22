@@ -297,13 +297,14 @@ body {
   justify-content: center;
   align-items: center;
   top: calc($chatbox--padding-top + $chatbox--input--padding-top);
-  right: calc($chatbox--padding-right + 7px);
+  right: calc($chatbox--padding-right + 5px);
   background: $chatbox--submit-btn--background;
   color: $chatbox--submit-btn--color;
   border: none;
   border-radius: 50%;
-  height: 1.5rem;
-  width: 1.5rem;
+  padding: 0;
+  height: 1.3rem;
+  width: 1.3rem;
 
   &:disabled {
     background: $chatbox--submit-btn--disabled--background;
