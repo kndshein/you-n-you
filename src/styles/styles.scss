@@ -254,7 +254,9 @@ body {
 .message {
   z-index: 5;
   position: relative;
+  cursor: pointer;
   background: $message--background;
+  border: none;
   border-radius: $message--border-radius;
   padding: 0.4rem 0.6rem;
   margin: 0.1rem 0 0;
@@ -270,6 +272,9 @@ body {
 
   // https://codepen.io/swards/pen/gxQmbj
   &.other_user {
+    &:hover {
+      background: darken($message--background, 5%);
+    }
     &.chain_last::before {
       content: '';
       position: absolute;
@@ -296,7 +301,9 @@ body {
 
   &.curr_user {
     background: $message--curr-user--background;
-
+    &:hover {
+      background: darken($message--curr-user--background, 15%);
+    }
     &.chain_last::before {
       content: '';
       position: absolute;

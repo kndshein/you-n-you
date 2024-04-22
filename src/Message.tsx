@@ -53,7 +53,7 @@ export function Message({
         reaction_popup_message_id == message.message_id ? 'curr_reacting' : ''
       }`}
     >
-      <p
+      <button
         key={message.date}
         className={`message ${
           message.user_id == user_id ? 'curr_user' : 'other_user'
@@ -68,7 +68,7 @@ export function Message({
         }
       >
         {message.text}
-      </p>
+      </button>
       <div
         className={`reaction_icon_group ${
           reaction_popup_message_id == message.message_id ? 'open' : ''
