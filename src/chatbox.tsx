@@ -22,17 +22,30 @@ export function Chatbox({
 }: Props) {
   const [curr_text, setCurrText] = useState('');
 
-  const handleSubmit = (event: SubmitEvent) => {
-    if (!curr_text) return;
-    event.preventDefault();
-    sendMessage(user_id, curr_text);
-    setCurrText('');
-  };
-
   const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     // Somehow `event` can't be properly typed inlined
     setCurrText(event.currentTarget.value);
   };
+
+  const submitMessage = () => {
+    if (!curr_text) return;
+    sendMessage(user_id, curr_text);
+    setCurrText('');
+  };
+
+  const handleKeyPress = (event: KeyboardEvent) => {
+    if (event.key === 'Enter' && !event.shiftKey) {
+      event.preventDefault();
+      submitMessage();
+    }
+  };
+
+  const handleSubmit = (event: SubmitEvent) => {
+    event.preventDefault();
+    submitMessage();
+  };
+
+  console.log(curr_text);
 
   return (
     <form className="chatbox" onSubmit={handleSubmit} ref={chatbox_ref}>
@@ -45,6 +58,7 @@ export function Chatbox({
         placeholder="iMessage"
         minRows={1}
         maxRows={10}
+        onKeyPress={handleKeyPress}
         onHeightChange={(rowHeight) => {
           if (input_ref.current) {
             let radius = 30;
