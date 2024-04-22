@@ -3,6 +3,7 @@ import { PastMessages } from './App';
 import { UserId } from './types';
 import { GoDotFill } from 'react-icons/go';
 import { DateTime } from 'luxon';
+import { Message } from './Message';
 
 type Props = {
   component_ref: Ref<HTMLDivElement>;
@@ -58,17 +59,11 @@ export function PastMessagesWrapper({
 
         return (
           <>
-            <p
-              key={message.date}
-              className={`message ${
-                is_curr_user_message ? 'curr_user' : 'other_user'
-              } ${message.is_start ? 'chain_start' : ''} ${
-                message.is_end ? 'chain_last' : ''
-              }`}
+            <Message
+              message={message}
               style={style}
-            >
-              {message.text}
-            </p>
+              is_curr_user_message={is_curr_user_message}
+            />
             {show_date && (
               <p className="date">
                 {DateTime.fromJSDate(message.date).toFormat(

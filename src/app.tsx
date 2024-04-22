@@ -1,10 +1,11 @@
 import { useState } from 'preact/hooks';
 import './styles/styles.scss';
-import { Message, UserId } from './types';
+import { Message, MessageId, UserId } from './types';
 import { PhoneView } from './PhoneView';
 import { useHotkeys } from 'react-hotkeys-hook';
 
 export type PastMessage = {
+  message_id: MessageId;
   user_id: UserId;
   text: Message;
   date: Date;
@@ -41,6 +42,7 @@ export function App() {
       is_end: is_new_message_chain,
     };
     const new_message: PastMessage = {
+      message_id: past_messages.length.toString(),
       user_id: user_id,
       text: text,
       date: new Date(),

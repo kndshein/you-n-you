@@ -17,6 +17,9 @@ $message--background: rgb(44, 44, 46);
 $message--color: white;
 $message--curr-user--background: rgb(10, 132, 255);
 $message--first--margin-top: 1rem;
+$reaction-group--color: rgb(133, 133, 133);
+$reaction-group--background: rgb(50, 50, 50);
+$reaction-icon--hover-color: white;
 $scrollbar--color: rgb(142, 142, 147);
 $scrollbar--gap: 1rem;
 $glass-effect--blur: blur(15px);
@@ -167,6 +170,7 @@ body {
 }
 
 .past_messages_wrapper {
+  position: relative;
   z-index: 2;
   display: flex;
   flex-flow: column-reverse;
@@ -213,6 +217,22 @@ body {
   margin-bottom: 0.3rem;
 }
 
+.message_group {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+
+  &:has(.curr_user) {
+    flex-flow: row-reverse;
+    align-self: end;
+  }
+
+  &:last-child {
+    margin-top: $message--first--margin-top;
+  }
+}
+
 .message {
   z-index: 4;
   position: relative;
@@ -221,14 +241,10 @@ body {
   padding: 0.4rem 0.6rem;
   margin: 0.1rem 0 0;
   font-size: 0.85rem;
-  max-width: 100%;
+  max-width: 90%;
   color: $message--color;
   overflow-wrap: break-word;
   white-space: pre-line; // So that newlines show up
-
-  &:last-child {
-    margin-top: $message--first--margin-top;
-  }
 
   &.chain_start {
     margin-top: 1rem;
@@ -261,7 +277,6 @@ body {
   }
 
   &.curr_user {
-    align-self: end;
     background: $message--curr-user--background;
 
     &.chain_last::before {
@@ -293,6 +308,26 @@ body {
     display: flex;
     margin-top: 1rem;
     color: gray;
+  }
+}
+
+.reaction_icon_group {
+  position: absolute;
+  color: $reaction-group--color;
+  top: -32px;
+  display: none;
+  gap: 0.5rem;
+  background: $reaction-group--background;
+  padding: 0.3rem 0.7rem;
+  border-radius: 20px;
+
+  &.open {
+    display: flex;
+  }
+
+  > *:hover {
+    cursor: pointer;
+    color: $reaction-icon--hover-color;
   }
 }
 
