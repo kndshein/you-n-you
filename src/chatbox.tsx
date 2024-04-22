@@ -3,6 +3,7 @@ import { UserId } from './types';
 import { SendMessage, SetCurrSelectedPhone } from './App';
 import { InputRef } from './PhoneView';
 import { IoMdArrowRoundUp } from 'react-icons/io';
+import ReactTextareaAutosize from 'react-textarea-autosize';
 
 interface Props {
   chatbox_ref: Ref<HTMLFormElement>;
@@ -28,17 +29,32 @@ export function Chatbox({
     setCurrText('');
   };
 
+  const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    // Somehow `event` can't be properly typed inlined
+    setCurrText(event.currentTarget.value);
+  };
+
   return (
     <form className="chatbox" onSubmit={handleSubmit} ref={chatbox_ref}>
-      <input
+      <ReactTextareaAutosize
         ref={input_ref}
         className="chatbox_input"
         value={curr_text}
-        onInput={(event) => {
-          setCurrText(event.currentTarget.value);
-        }}
+        onInput={handleInputChange}
         onFocus={() => setCurrSelectedPhone(user_id)}
         placeholder="iMessage"
+        minRows={1}
+        maxRows={10}
+        onHeightChange={(rowHeight) => {
+          if (input_ref.current) {
+            let radius = 30;
+            if (rowHeight > 40) radius = 20;
+            if (rowHeight > 60) radius = 18;
+            if (rowHeight > 80) radius = 15;
+            if (rowHeight > 100) radius = 12;
+            input_ref.current.style.borderRadius = `${radius}px`;
+          }
+        }}
       />
       <button
         type="submit"

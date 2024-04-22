@@ -13,7 +13,7 @@ interface Props {
   setCurrSelectedPhone: SetCurrSelectedPhone;
 }
 
-export type InputRef = HTMLInputElement | null;
+export type InputRef = HTMLTextAreaElement | null;
 
 export function PhoneView({
   user_id,
