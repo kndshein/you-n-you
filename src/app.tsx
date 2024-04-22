@@ -1,6 +1,6 @@
 import { useState } from 'preact/hooks';
 import './styles/styles.scss';
-import { Message, MessageId, UserId } from './types';
+import { Message, MessageId, UserId } from './utils/types';
 import { PhoneView } from './PhoneView';
 import { useHotkeys } from 'react-hotkeys-hook';
 

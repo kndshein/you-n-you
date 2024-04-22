@@ -1,6 +1,6 @@
 import { Ref } from 'preact';
 import { PastMessages, SetPastMessages } from './App';
-import { UserId } from './types';
+import { UserId } from './utils/types';
 import { GoDotFill } from 'react-icons/go';
 import { DateTime } from 'luxon';
 import { Message } from './Message';

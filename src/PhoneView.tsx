@@ -6,8 +6,8 @@ import {
   SetPastMessages,
   SetTypingUser,
 } from './App';
-import { Chatbox } from './ChatBox';
-import { UserId } from './types';
+import { Chatbox } from './Chatbox';
+import { UserId } from './utils/types';
 import { PastMessagesWrapper } from './PastMessagesWrapper';
 import { PiCursorClick } from 'react-icons/pi';
 

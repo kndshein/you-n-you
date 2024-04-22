@@ -1,5 +1,5 @@
 import { Ref, useEffect, useState } from 'preact/hooks';
-import { UserId } from './types';
+import { UserId } from './utils/types';
 import { SendMessage, SetCurrSelectedPhone, SetTypingUser } from './App';
 import { InputRef } from './PhoneView';
 import { IoMdArrowRoundUp } from 'react-icons/io';
