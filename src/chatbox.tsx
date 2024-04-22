@@ -2,6 +2,7 @@ import { Ref, useState } from 'preact/hooks';
 import { UserId } from './types';
 import { SendMessage, SetCurrSelectedPhone } from './App';
 import { InputRef } from './PhoneView';
+import { IoMdArrowRoundUp } from 'react-icons/io';
 
 interface Props {
   chatbox_ref: Ref<HTMLFormElement>;
@@ -43,7 +44,7 @@ export function Chatbox({
         className="chatbox_submit_btn"
         disabled={!curr_text}
       >
-        Send
+        <IoMdArrowRoundUp />
       </button>
     </form>
   );
