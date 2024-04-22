@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "luxon": "^3.4.4",
     "preact": "^10.19.6",
     "react-hotkeys-hook": "^4.5.0",
     "react-icons": "^5.1.0",
@@ -16,6 +17,7 @@
   },
   "devDependencies": {
     "@preact/preset-vite": "^2.8.2",
+    "@types/luxon": "^3.4.2",
     "sass": "^1.75.0",
     "typescript": "^5.2.2",
     "vite": "^5.2.0"

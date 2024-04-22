@@ -2,6 +2,7 @@ import { Ref } from 'preact';
 import { PastMessages } from './App';
 import { UserId } from './types';
 import { GoDotFill } from 'react-icons/go';
+import { DateTime } from 'luxon';
 
 type Props = {
   component_ref: Ref<HTMLDivElement>;
@@ -45,17 +46,24 @@ export function PastMessagesWrapper({
         if (is_cloned && idx == 0)
           style = { marginBottom: `${chatbox_height + 8}px` };
         return (
-          <p
-            key={message.datetime}
-            className={`message ${
-              is_curr_user_message ? 'curr_user' : 'other_user'
-            } ${message.is_start ? 'chain_start' : ''} ${
-              message.is_end ? 'chain_last' : ''
-            }`}
-            style={style}
-          >
-            {message.text}
-          </p>
+          <>
+            <p className="date">
+              {DateTime.fromJSDate(message.datetime).toFormat(
+                "EEE, MMM dd 'at' t"
+              )}
+            </p>
+            <p
+              key={message.datetime}
+              className={`message ${
+                is_curr_user_message ? 'curr_user' : 'other_user'
+              } ${message.is_start ? 'chain_start' : ''} ${
+                message.is_end ? 'chain_last' : ''
+              }`}
+              style={style}
+            >
+              {message.text}
+            </p>
+          </>
         );
       })}
     </div>

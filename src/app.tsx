@@ -7,7 +7,7 @@ import { useHotkeys } from 'react-hotkeys-hook';
 export type PastMessage = {
   user_id: UserId;
   text: Message;
-  datetime: number;
+  datetime: Date;
   is_start: boolean;
   is_end: boolean;
 };
@@ -22,8 +22,6 @@ export function App() {
   const [past_messages, setPastMessages] = useState<PastMessages>([]);
   const [curr_selected_phone, setCurrSelectedPhone] = useState('1');
   const [typing_user, setTypingUser] = useState('');
-
-  console.log(typing_user);
 
   const handleShortcut = () => {
     // https://stackoverflow.com/a/54770183
@@ -45,7 +43,7 @@ export function App() {
     const new_message: PastMessage = {
       user_id: user_id,
       text: text,
-      datetime: Date.now(),
+      datetime: new Date(),
       is_start: is_new_message_chain,
       is_end: true,
     };
