@@ -48,7 +48,11 @@ export function Message({
   };
 
   return (
-    <div className="message_group">
+    <div
+      className={`message_group  ${
+        reaction_popup_message_id == message.message_id ? 'curr_reacting' : ''
+      }`}
+    >
       <p
         key={message.date}
         className={`message ${
