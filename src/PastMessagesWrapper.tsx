@@ -44,7 +44,6 @@ export function PastMessagesWrapper({
         </p>
       )}
       {past_messages.map((message, idx) => {
-        const is_curr_user_message = message.user_id == user_id;
         let style = {};
         if (is_cloned && idx == 0)
           style = { marginBottom: `${chatbox_height + 8}px` };
@@ -63,8 +62,8 @@ export function PastMessagesWrapper({
           <>
             <Message
               message={message}
+              user_id={user_id}
               style={style}
-              is_curr_user_message={is_curr_user_message}
               setPastMessages={setPastMessages}
             />
             {show_date && (

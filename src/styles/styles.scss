@@ -313,7 +313,7 @@ body {
 
 .reaction_icon_group {
   position: absolute;
-  top: -32px;
+  top: -35px;
   display: none;
   gap: 0.5rem;
   background: $reaction-group--background;
@@ -329,6 +329,10 @@ body {
     padding: 0;
     border: none;
     color: $reaction-icon--color;
+
+    &.selected {
+      color: $reaction-icon--hover-color;
+    }
 
     &:hover {
       cursor: pointer;

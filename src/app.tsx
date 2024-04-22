@@ -11,14 +11,18 @@ export type PastMessage = {
   date: Date;
   is_start: boolean;
   is_end: boolean;
-  reaction: Reaction | null;
+  reaction:
+    | {
+        [reaction_type in ReactionType]?: UserId[];
+      }
+    | null;
 };
 export type PastMessages = PastMessage[];
 export type SetPastMessages = React.Dispatch<
   React.SetStateAction<PastMessages>
 >;
 
-export type Reaction =
+export type ReactionType =
   | 'heart'
   | 'thumbs_up'
   | 'thumbs_down'
