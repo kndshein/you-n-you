@@ -44,7 +44,7 @@ $chatbox--submit-btn--disabled--color: rgb(72, 72, 64);
 :root {
   --reacted-idx: 1;
 }
-
+// https://stackoverflow.com/a/66039411
 $imported-reacted-idx: var(--reacted-idx);
 
 * {
@@ -220,6 +220,7 @@ body {
 .past_messages_container {
   display: flex;
   flex-flow: column-reverse;
+  align-items: flex-start;
   overflow-y: auto;
   padding-left: $past-messages--padding-left;
   padding-right: $scrollbar--gap; // Space between scrollbar and content is controlled by padding
@@ -376,9 +377,16 @@ body {
   }
 
   &.typing {
+    cursor: unset;
     display: flex;
     margin-top: 1rem;
     color: gray;
+    &:hover {
+      background: $message--background;
+      &.chain_last::before {
+        background: $message--background;
+      }
+    }
   }
 }
 
