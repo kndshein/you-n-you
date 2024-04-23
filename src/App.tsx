@@ -34,7 +34,7 @@ export type SetCurrSelectedPhone = (user_id: string) => void;
 export type SetTypingUser = (user_id: string) => void;
 
 export function App() {
-  const [users] = useState(['1', '2', '3', '4', '5', '6']);
+  const [users] = useState(['1', '2']);
   const [past_messages, setPastMessages] = useState<PastMessages>([]);
   const [curr_selected_phone, setCurrSelectedPhone] = useState('1');
   const [typing_user, setTypingUser] = useState('');
