@@ -33,7 +33,6 @@ export function PastMessagesWrapper({
 
   return (
     <div
-      ref={component_ref}
       className={`past_messages_wrapper ${
         is_cloned ? 'past_messages_wrapper_clone' : ''
       }`}
@@ -45,47 +44,53 @@ export function PastMessagesWrapper({
           onClick={() => setReactionPopupMessageId('')}
         />
       )}
-      {typing_user && typing_user != user_id && (
-        <p className="message other_user chain_last typing">
-          <GoDotFill />
-          <GoDotFill />
-          <GoDotFill />
-        </p>
-      )}
-      {past_messages.map((message, idx) => {
-        let style = {};
-        if (is_cloned && idx == 0)
-          style = { marginBottom: `${chatbox_height + 8}px` };
-        let show_date = false;
-        if (idx == past_messages.length - 1) {
-          show_date = true;
-        } else {
-          const prev_message = past_messages[idx + 1];
-          const diff_in_min = DateTime.fromJSDate(message.date)
-            .diff(DateTime.fromJSDate(prev_message.date), 'minute')
-            .as('minute');
-          if (diff_in_min > 2) show_date = true;
-        }
-        return (
-          <>
-            <Message
-              message={message}
-              user_id={user_id}
-              style={style}
-              setPastMessages={setPastMessages}
-              reaction_popup_message_id={reaction_popup_message_id}
-              setReactionPopupMessageId={setReactionPopupMessageId}
-            />
-            {show_date && (
-              <p className="date">
-                {DateTime.fromJSDate(message.date).toFormat(
-                  "EEE, MMM dd 'at' t"
-                )}
-              </p>
-            )}
-          </>
-        );
-      })}
+      <div
+        ref={component_ref}
+        className="past_messages_container"
+        onScroll={handleScrolling}
+      >
+        {typing_user && typing_user != user_id && (
+          <p className="message other_user chain_last typing">
+            <GoDotFill />
+            <GoDotFill />
+            <GoDotFill />
+          </p>
+        )}
+        {past_messages.map((message, idx) => {
+          let style = {};
+          if (is_cloned && idx == 0)
+            style = { marginBottom: `${chatbox_height + 8}px` };
+          let show_date = false;
+          if (idx == past_messages.length - 1) {
+            show_date = true;
+          } else {
+            const prev_message = past_messages[idx + 1];
+            const diff_in_min = DateTime.fromJSDate(message.date)
+              .diff(DateTime.fromJSDate(prev_message.date), 'minute')
+              .as('minute');
+            if (diff_in_min > 2) show_date = true;
+          }
+          return (
+            <>
+              <Message
+                message={message}
+                user_id={user_id}
+                style={style}
+                setPastMessages={setPastMessages}
+                reaction_popup_message_id={reaction_popup_message_id}
+                setReactionPopupMessageId={setReactionPopupMessageId}
+              />
+              {show_date && (
+                <p className="date">
+                  {DateTime.fromJSDate(message.date).toFormat(
+                    "EEE, MMM dd 'at' t"
+                  )}
+                </p>
+              )}
+            </>
+          );
+        })}
+      </div>
     </div>
   );
 }
