@@ -381,10 +381,15 @@ body {
   &:has(~ .message.curr_user) {
     left: -1rem;
     right: unset;
+    &.self_react {
+      color: white;
+      background: $message--curr-user--background;
+    }
   }
 
   &.self_react {
-    color: $message--curr-user--background;
+    color: white;
+    background: $message--curr-user--background;
   }
 }
 
