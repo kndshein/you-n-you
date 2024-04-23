@@ -55,10 +55,13 @@ export function Message({
     >
       <div className="message_wrapper">
         {Object.entries(message.reaction).map(
-          ([reaction_user_id, reaction_type]) => {
+          ([reaction_user_id, reaction_type], idx) => {
             const is_self_react = reaction_user_id == user_id;
             return (
-              <div className={`reacted ${is_self_react ? 'self_react' : ''}`}>
+              <div
+                className={`reacted ${is_self_react ? 'self_react' : ''}`}
+                style={{ '--reacted-idx': `${idx}` }}
+              >
                 {reaction_dict[reaction_type](15)}
               </div>
             );

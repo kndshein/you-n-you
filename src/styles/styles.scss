@@ -41,6 +41,12 @@ $chatbox--submit-btn--color: white;
 $chatbox--submit-btn--disabled--background: rgb(44, 44, 46);
 $chatbox--submit-btn--disabled--color: rgb(72, 72, 64);
 
+:root {
+  --reacted-idx: 1;
+}
+
+$imported-reacted-idx: var(--reacted-idx);
+
 * {
   box-sizing: border-box;
 }
@@ -377,10 +383,10 @@ body {
 }
 
 .reacted {
-  z-index: 6;
+  z-index: calc(6 - calc($imported-reacted-idx * 1));
   position: absolute;
   top: -1rem;
-  right: -1rem;
+  right: calc(-1rem - calc($imported-reacted-idx * 5px));
   display: flex;
   justify-content: center;
   align-items: center;
@@ -391,7 +397,7 @@ body {
   background: $reaction-group--background;
 
   &:has(~ .message.curr_user) {
-    left: -1rem;
+    left: calc(-1rem - calc($imported-reacted-idx * 5px));
     right: unset;
     &.self_react {
       color: white;
