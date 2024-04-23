@@ -1,6 +1,6 @@
 import { PastMessage, ReactionType, SetPastMessages } from './App';
 import { JSX } from 'preact/jsx-runtime';
-import { UserId } from './types';
+import { UserId } from './utils/types';
 import { reaction_dict } from './utils/utils';
 
 interface Props {
