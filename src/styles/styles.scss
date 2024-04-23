@@ -283,6 +283,11 @@ body {
   max-width: 90%;
   &:has(.reacted) {
     margin-top: 1.2rem;
+
+    // Undo the &.chain_start in .message
+    .message.chain_start {
+      margin-top: 0;
+    }
   }
 }
 
@@ -302,6 +307,7 @@ body {
   overflow-wrap: break-word;
   white-space: pre-line; // So that newlines show up
 
+  // This is undone in .message_wrapper
   &.chain_start {
     margin-top: 1rem;
   }
@@ -401,7 +407,7 @@ body {
   padding: 0.32rem;
   border-radius: 50%;
   border: 2px $phone--background solid;
-  color: white;
+  color: gray;
   background: $reaction-group--background;
 
   &:has(~ .message.curr_user) {
