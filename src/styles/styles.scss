@@ -16,6 +16,7 @@ $message--border-radius: 15px;
 $message--background: rgb(44, 44, 46);
 $message--color: white;
 $message--curr-user--background: rgb(10, 132, 255);
+$message--margin: 0.1rem 0 0;
 $message--first--margin-top: 1rem;
 $reaction-group--background: rgb(50, 50, 50);
 $reaction-icon--color: rgb(133, 133, 133);
@@ -249,6 +250,13 @@ body {
   &:not(.curr_reacting) {
     z-index: 4;
   }
+
+  // If the previous element is `.date`
+  &:has(+ .date) {
+    .message.chain_start {
+      margin: $message--margin;
+    }
+  }
 }
 
 .message {
@@ -259,7 +267,7 @@ body {
   border: none;
   border-radius: $message--border-radius;
   padding: 0.4rem 0.6rem;
-  margin: 0.1rem 0 0;
+  margin: $message--margin;
   font-size: 0.85rem;
   text-align: left;
   max-width: 90%;
