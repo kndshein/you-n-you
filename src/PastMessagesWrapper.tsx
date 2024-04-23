@@ -66,7 +66,6 @@ export function PastMessagesWrapper({
             .as('minute');
           if (diff_in_min > 2) show_date = true;
         }
-
         return (
           <>
             <Message

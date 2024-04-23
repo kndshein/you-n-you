@@ -53,6 +53,10 @@ export function Message({
         reaction_popup_message_id == message.message_id ? 'curr_reacting' : ''
       }`}
     >
+      {/* {Object.entries(message.reaction).map(([user_id, reaction_type]) => {
+        const is_self_react = user_id == user_id
+        return <div>{reaction_dict[reac</div>;
+      })} */}
       <button
         key={message.date}
         className={`message ${
@@ -74,16 +78,17 @@ export function Message({
           reaction_popup_message_id == message.message_id ? 'open' : ''
         }`}
       >
-        {reaction_dict.map((reaction_obj) => {
+        {Object.entries(reaction_dict).map(([_reaction_type, icon]) => {
+          const reaction_type = _reaction_type as ReactionType;
           const curr_user_reaction = message.reaction[user_id];
           return (
             <button
               className={`${
-                curr_user_reaction == reaction_obj.name ? 'selected' : ''
+                curr_user_reaction == reaction_type ? 'selected' : ''
               }`}
-              onClick={() => handleReactionClick(reaction_obj.name)}
+              onClick={() => handleReactionClick(reaction_type)}
             >
-              {reaction_obj.icon}
+              {icon}
             </button>
           );
         })}
