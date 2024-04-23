@@ -202,7 +202,9 @@ body {
     visibility: hidden;
   }
 
-  & .message:last-child {
+  // To push the margin up top for the clone
+  & .message_group:last-child,
+  .date:last-child {
     margin-top: calc($phone-header--height + $message--first--margin-top);
   }
 
