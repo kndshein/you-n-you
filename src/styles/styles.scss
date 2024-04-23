@@ -271,10 +271,14 @@ body {
     margin-top: 1rem;
   }
 
+  $message--background-darkened: darken($message--background, 5%);
   // https://codepen.io/swards/pen/gxQmbj
   &.other_user {
     &:hover {
-      background: darken($message--background, 5%);
+      background: $message--background-darkened;
+      &.chain_last::before {
+        background: $message--background-darkened;
+      }
     }
     &.chain_last::before {
       content: '';
@@ -300,10 +304,17 @@ body {
     }
   }
 
+  $message--curr-user--background-darkened: darken(
+    $message--curr-user--background,
+    15%
+  );
   &.curr_user {
     background: $message--curr-user--background;
     &:hover {
-      background: darken($message--curr-user--background, 15%);
+      background: $message--curr-user--background-darkened;
+      &.chain_last::before {
+        background: $message--curr-user--background-darkened;
+      }
     }
     &.chain_last::before {
       content: '';
