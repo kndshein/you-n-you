@@ -10,8 +10,10 @@ import { Chatbox } from './Chatbox';
 import { UserId } from './utils/types';
 import { PastMessagesWrapper } from './PastMessagesWrapper';
 import { PiCursorClick } from 'react-icons/pi';
+import PhoneHeader from './PhoneHeader';
 
 interface Props {
+  idx: number;
   user_id: UserId;
   past_messages: PastMessages;
   setPastMessages: SetPastMessages;
@@ -25,6 +27,7 @@ interface Props {
 export type InputRef = HTMLTextAreaElement | null;
 
 export function PhoneView({
+  idx,
   user_id,
   past_messages,
   setPastMessages,
@@ -62,6 +65,13 @@ export function PhoneView({
     if (is_curr_selected_phone) input_ref.current?.focus();
   }, [is_curr_selected_phone]);
 
+  let profile_name = 'You';
+  if (idx > 0 && idx < 4) {
+    profile_name = 'The ' + 'Other '.repeat(idx) + profile_name;
+  } else if (idx >= 4) {
+    profile_name = 'The ' + 'Other' + `<sup>${idx}</sup> ` + profile_name;
+  }
+
   return (
     <section
       className={`phone_container ${
@@ -84,7 +94,7 @@ export function PhoneView({
         )}
       </button>
       <section className="phone">
-        <section className="phone_header">You</section>
+        <PhoneHeader user_idx={idx} />
         <PastMessagesWrapper
           component_ref={real_past_messages_ref}
           past_messages={past_messages}

@@ -34,7 +34,7 @@ export type SetCurrSelectedPhone = (user_id: string) => void;
 export type SetTypingUser = (user_id: string) => void;
 
 export function App() {
-  const [users] = useState(['1', '2']);
+  const [users] = useState(['1', '2', '3', '4', '5', '6']);
   const [past_messages, setPastMessages] = useState<PastMessages>([]);
   const [curr_selected_phone, setCurrSelectedPhone] = useState('1');
   const [typing_user, setTypingUser] = useState('');
@@ -78,9 +78,10 @@ export function App() {
 
   return (
     <div className="phones_container">
-      {users.map((user_id) => {
+      {users.map((user_id, idx) => {
         return (
           <PhoneView
+            idx={idx}
             key={user_id}
             user_id={user_id}
             past_messages={past_messages}
