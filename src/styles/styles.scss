@@ -259,6 +259,14 @@ body {
   }
 }
 
+.message_wrapper {
+  position: relative;
+  max-width: 90%;
+  &:has(.reacted) {
+    margin-top: 1.2rem;
+  }
+}
+
 .message {
   z-index: 5;
   position: relative;
@@ -270,7 +278,7 @@ body {
   margin: $message--margin;
   font-size: 0.85rem;
   text-align: left;
-  max-width: 90%;
+  max-width: 100%;
   color: $message--color;
   overflow-wrap: break-word;
   white-space: pre-line; // So that newlines show up
@@ -353,6 +361,30 @@ body {
     display: flex;
     margin-top: 1rem;
     color: gray;
+  }
+}
+
+.reacted {
+  z-index: 6;
+  position: absolute;
+  top: -1rem;
+  right: -1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.32rem;
+  border-radius: 50%;
+  border: 2px $phone--background solid;
+  color: white;
+  background: $reaction-group--background;
+
+  &:has(~ .message.curr_user) {
+    left: -1rem;
+    right: unset;
+  }
+
+  &.self_react {
+    color: $message--curr-user--background;
   }
 }
 
@@ -439,9 +471,4 @@ body {
   &:not(:disabled) {
     cursor: pointer;
   }
-}
-
-.weeee {
-  color: red;
-  background-color: blue;
 }

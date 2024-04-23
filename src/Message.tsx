@@ -53,26 +53,34 @@ export function Message({
         reaction_popup_message_id == message.message_id ? 'curr_reacting' : ''
       }`}
     >
-      {/* {Object.entries(message.reaction).map(([user_id, reaction_type]) => {
-        const is_self_react = user_id == user_id
-        return <div>{reaction_dict[reac</div>;
-      })} */}
-      <button
-        key={message.date}
-        className={`message ${
-          message.user_id == user_id ? 'curr_user' : 'other_user'
-        } ${message.is_start ? 'chain_start' : ''} ${
-          message.is_end ? 'chain_last' : ''
-        }`}
-        style={style}
-        onClick={() =>
-          setReactionPopupMessageId((prev_value) => {
-            return prev_value == message.message_id ? '' : message.message_id;
-          })
-        }
-      >
-        {message.text}
-      </button>
+      <div className="message_wrapper">
+        {Object.entries(message.reaction).map(
+          ([reaction_user_id, reaction_type]) => {
+            const is_self_react = reaction_user_id == user_id;
+            return (
+              <div className={`reacted ${is_self_react ? 'self_react' : ''}`}>
+                {reaction_dict[reaction_type](15)}
+              </div>
+            );
+          }
+        )}
+        <button
+          key={message.date}
+          className={`message ${
+            message.user_id == user_id ? 'curr_user' : 'other_user'
+          } ${message.is_start ? 'chain_start' : ''} ${
+            message.is_end ? 'chain_last' : ''
+          }`}
+          style={style}
+          onClick={() =>
+            setReactionPopupMessageId((prev_value) => {
+              return prev_value == message.message_id ? '' : message.message_id;
+            })
+          }
+        >
+          {message.text}
+        </button>
+      </div>
       <div
         className={`reaction_icon_group ${
           reaction_popup_message_id == message.message_id ? 'open' : ''
@@ -88,7 +96,7 @@ export function Message({
               }`}
               onClick={() => handleReactionClick(reaction_type)}
             >
-              {icon}
+              {icon(20)}
             </button>
           );
         })}

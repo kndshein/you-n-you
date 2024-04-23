@@ -6,14 +6,14 @@ import { FaRegLaughSquint } from 'react-icons/fa';
 import { BsExclamationDiamond, BsQuestionCircle } from 'react-icons/bs';
 
 type ReactionDict = {
-  [reaction in ReactionType]: JSX.Element;
+  [reaction in ReactionType]: (size: number) => JSX.Element;
 };
 
 export const reaction_dict: ReactionDict = {
-  heart: <FaRegHeart size={20} />,
-  thumbs_up: <LuThumbsUp size={20} />,
-  thumbs_down: <LuThumbsDown size={20} />,
-  laugh: <FaRegLaughSquint size={20} />,
-  emphasis: <BsExclamationDiamond size={20} />,
-  question_mark: <BsQuestionCircle size={20} />,
+  heart: (size) => <FaRegHeart size={size} />,
+  thumbs_up: (size) => <LuThumbsUp size={size} />,
+  thumbs_down: (size) => <LuThumbsDown size={size} />,
+  laugh: (size) => <FaRegLaughSquint size={size} />,
+  emphasis: (size) => <BsExclamationDiamond size={size} />,
+  question_mark: (size) => <BsQuestionCircle size={size} />,
 };
