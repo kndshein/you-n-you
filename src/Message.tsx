@@ -60,9 +60,12 @@ export function Message({
             return (
               <div
                 className={`reacted ${is_self_react ? 'self_react' : ''}`}
-                style={{ '--reacted-idx': `${idx}` }}
+                style={{
+                  '--reacted-idx': `${idx}`,
+                  '--reacted-color': `${reaction_dict[reaction_type].hover_color}`,
+                }}
               >
-                {reaction_dict[reaction_type](15)}
+                {reaction_dict[reaction_type].icon(15)}
               </div>
             );
           }
@@ -89,7 +92,7 @@ export function Message({
           reaction_popup_message_id == message.message_id ? 'open' : ''
         }`}
       >
-        {Object.entries(reaction_dict).map(([_reaction_type, icon]) => {
+        {Object.entries(reaction_dict).map(([_reaction_type, reaction_obj]) => {
           const reaction_type = _reaction_type as ReactionType;
           const curr_user_reaction = message.reaction[user_id];
           return (
@@ -99,7 +102,7 @@ export function Message({
               }`}
               onClick={() => handleReactionClick(reaction_type)}
             >
-              {icon(20)}
+              {reaction_obj.icon(20)}
             </button>
           );
         })}

@@ -21,6 +21,7 @@ $message--first--margin-top: 1rem;
 $reaction-group--background: rgb(50, 50, 50);
 $reaction-icon--color: rgb(133, 133, 133);
 $reaction-icon--hover-color: white;
+$reaction-icon--top: -32px;
 $scrollbar--color: rgb(142, 142, 147);
 $scrollbar--gap: 1rem;
 $glass-effect--blur: blur(15px);
@@ -43,9 +44,11 @@ $chatbox--submit-btn--disabled--color: rgb(72, 72, 64);
 
 :root {
   --reacted-idx: 1;
+  --reacted-color: white;
 }
 // https://stackoverflow.com/a/66039411
 $imported-reacted-idx: var(--reacted-idx);
+$imported-reacted-color: var(--reacted-color);
 
 * {
   box-sizing: border-box;
@@ -276,19 +279,27 @@ body {
       margin: $message--margin;
     }
   }
-}
 
-.message_wrapper {
-  position: relative;
-  max-width: 90%;
   &:has(.reacted) {
     margin-top: 1.2rem;
+    .reaction_icon_group {
+      top: calc($reaction-icon--top - 15px);
+    }
 
     // Undo the &.chain_start in .message
     .message.chain_start {
       margin-top: 0;
     }
   }
+
+  &:has(.message.chain_start) {
+    margin-top: 1rem;
+  }
+}
+
+.message_wrapper {
+  position: relative;
+  max-width: 90%;
 }
 
 .message {
@@ -308,9 +319,9 @@ body {
   white-space: pre-line; // So that newlines show up
 
   // This is undone in .message_wrapper
-  &.chain_start {
-    margin-top: 1rem;
-  }
+  // &.chain_start {
+  //   margin-top: 1rem;
+  // }
 
   $message--background-darkened: darken($message--background, 5%);
   // https://codepen.io/swards/pen/gxQmbj
@@ -407,16 +418,12 @@ body {
   padding: 0.32rem;
   border-radius: 50%;
   border: 2px $phone--background solid;
-  color: gray;
+  color: $imported-reacted-color;
   background: $reaction-group--background;
 
   &:has(~ .message.curr_user) {
     left: calc(-1rem - calc($imported-reacted-idx * 5px));
     right: unset;
-    &.self_react {
-      color: white;
-      background: $message--curr-user--background;
-    }
   }
 
   &.self_react {
@@ -428,7 +435,7 @@ body {
 .reaction_icon_group {
   z-index: 5;
   position: absolute;
-  top: -32px;
+  top: $reaction-icon--top;
   display: none;
   gap: 0.5rem;
   background: $reaction-group--background;

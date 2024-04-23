@@ -6,14 +6,32 @@ import { FaRegLaughSquint } from 'react-icons/fa';
 import { BsExclamationDiamond, BsQuestionCircle } from 'react-icons/bs';
 
 type ReactionDict = {
-  [reaction in ReactionType]: (size: number) => JSX.Element;
+  [reaction in ReactionType]: {
+    icon: (size: number) => JSX.Element;
+    hover_color: string;
+  };
 };
 
 export const reaction_dict: ReactionDict = {
-  heart: (size) => <FaRegHeart size={size} />,
-  thumbs_up: (size) => <LuThumbsUp size={size} />,
-  thumbs_down: (size) => <LuThumbsDown size={size} />,
-  laugh: (size) => <FaRegLaughSquint size={size} />,
-  emphasis: (size) => <BsExclamationDiamond size={size} />,
-  question_mark: (size) => <BsQuestionCircle size={size} />,
+  heart: { icon: (size) => <FaRegHeart size={size} />, hover_color: '#fb34e2' },
+  thumbs_up: {
+    icon: (size) => <LuThumbsUp size={size} />,
+    hover_color: '#6fff0b',
+  },
+  thumbs_down: {
+    icon: (size) => <LuThumbsDown size={size} />,
+    hover_color: '#c18dff',
+  },
+  laugh: {
+    icon: (size) => <FaRegLaughSquint size={size} />,
+    hover_color: '#ffca00',
+  },
+  emphasis: {
+    icon: (size) => <BsExclamationDiamond size={size} />,
+    hover_color: '#ff4b0b',
+  },
+  question_mark: {
+    icon: (size) => <BsQuestionCircle size={size} />,
+    hover_color: '#85edd2',
+  },
 };
